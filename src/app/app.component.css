@@ -1,0 +1,9 @@
+/* --color-primary: #1d2f40;
+  --color-secondary: #0a91ab; */
+
+h1 {
+  color: white;
+  background-color: #1d2f40;
+  padding: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

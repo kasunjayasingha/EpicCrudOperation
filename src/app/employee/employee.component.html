@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-md-5">
+    <h4 class="text-center">Create Employee</h4>
+
+    <div class="card card-body bg-light">
+      <div class="form-horizontal">
+        <div class="form-group mb-3">
+          <label class="control-label col-sm-2" for="name">Name:</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [(ngModel)]="employeeName"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              name="name"
+              placeholder="Enter Name"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="control-label col-sm-3" for="address">Address:</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [(ngModel)]="employeeAddress"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              name="address"
+              placeholder="Enter Address"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="control-label col-sm-2" for="phone">Phone:</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [(ngModel)]="mobileNumber"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              name="phone"
+              placeholder="Enter Phone"
+            />
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <div class="col-sm-offset-2 col-sm-10 text-right">
+            <button
+              type="submit"
+              (click)="save()"
+              class="btn btn-primary btn-color"
+            >
+              {{ saveButtonName }}</button
+            >&nbsp;
+            <button type="reset" (click)="clear()" class="btn btn-secondary">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <h4 class="text-center">List of Employees</h4>
+
+    <div class="card card-body bg-light">
+      <div class="table table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr *ngFor="let employee of EmployeeArray">
+              <td>{{ employee.employeeName }}</td>
+              <td>{{ employee.employeeAddress }}</td>
+              <td>{{ employee.mobileNumber }}</td>
+              <td>
+                <button
+                  class="btn btn-color btn-sm"
+                  (click)="setUpdate(employee)"
+                >
+                  Edit</button
+                >&nbsp;
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="setDelete(employee)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
