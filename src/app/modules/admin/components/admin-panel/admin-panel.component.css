@@ -1,0 +1,41 @@
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.list-group-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-group-horizontal .list-group-item {
+  margin-right: 10px; /* Adjust spacing between items */
+}
+
+.list-group-item {
+  padding: 0.5rem 5rem;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5rem;
+
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+}
+
+.list-group-horizontal[_ngcontent-ng-c3634898697]
+  .list-group-item[_ngcontent-ng-c3634898697] {
+  margin: 0; /* Adjust spacing between items */
+}
+
+.active {
+  background-color: #0a91ab;
+  color: white;
+}

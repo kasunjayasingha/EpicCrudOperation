@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="center">
+    <div class="col-md-5 center">
+      <ul class="list-group-horizontal">
+        <a
+          routerLink="add"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="list-group-item"
+          >Add</a
+        >
+
+        <a
+          routerLink="show"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="list-group-item"
+          >Show</a
+        >
+      </ul>
+    </div>
+  </div>
+  <div class="">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'employee',
+  selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent {
   EmployeeArray: any[] = [];
 
-  employeeName: string = '';
-  employeeAddress: string = '';
-  mobileNumber: String = '';
+  employeeName: any;
+  employeeAddress: any;
+  mobileNumber: any;
 
   currentEmployeeId = '';
 

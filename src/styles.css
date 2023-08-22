@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+.btn-color {
+  background-color: #0a91ab;
+  color: white;
+}
+
+.btn-color:hover {
+  background-color: #1d2f40;
+  color: white;
+}
+
+.table-group-divider {
+  border-top-color: #0a91ab;
+}
+
+.btn-info {
+  color: white;
+}
