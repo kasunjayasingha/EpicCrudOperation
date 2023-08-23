@@ -18,14 +18,17 @@ public class EmployeeServiceIMPL implements EmployeeService {
    private EmployeeRepo employeeRepo;
     @Autowired
     public EmployeeServiceIMPL(EmployeeRepo employeeRepo) {
+
         this.employeeRepo = employeeRepo;
     }
     @Override
     public String addEmployee(EmployeeSaveDTO employeeSaveDTO) {
         Employee employee = new Employee(
                 employeeSaveDTO.getEmployeeName(),
+                employeeSaveDTO.getEmployeeEmail(),
                 employeeSaveDTO.getEmployeeAddress(),
-                employeeSaveDTO.getMobileNumber()
+                employeeSaveDTO.getMobileNumber(),
+                employeeSaveDTO.getEmployeePassword()
         );
 
         employeeRepo.save(employee);
@@ -41,8 +44,10 @@ public class EmployeeServiceIMPL implements EmployeeService {
             EmployeeDTO employeeDTO = new EmployeeDTO(
                     employee.getEmployeeId(),
                     employee.getEmployeeName(),
+                    employee.getEmployeeEmail(),
                     employee.getEmployeeAddress(),
-                    employee.getMobileNumber()
+                    employee.getMobileNumber(),
+                    employee.getEmployeePassword()
             );
             employeeDTOList.add(employeeDTO);
         }

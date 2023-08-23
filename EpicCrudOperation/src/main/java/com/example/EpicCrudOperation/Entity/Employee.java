@@ -11,22 +11,31 @@ public class Employee {
     private int employeeId;
     @Column(name = "employee_name", length = 50)
     private String employeeName;
+    @Column(name = "employee_email", length = 50)
+    private String employeeEmail;
     @Column(name = "employee_address", length = 50)
     private String employeeAddress;
     @Column(name = "employee_mobile", length = 10)
     private int mobileNumber;
+    @Column(name = "employee_password", length = 50)
+    private String employeePassword;
 
-    public Employee(int employeeId, String employeeName, String employeeAddress, int mobileNumber) {
+    public Employee(int employeeId, String employeeName, String employeeEmail, String employeeAddress, int mobileNumber, String employeePassword) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
+        this.employeeEmail = employeeEmail;
         this.employeeAddress = employeeAddress;
         this.mobileNumber = mobileNumber;
+        this.employeePassword = employeePassword;
     }
 
-    public Employee(String employeeName, String employeeAddress, int mobileNumber) {
+
+    public Employee(String employeeName, String employeeEmail, String employeeAddress, int mobileNumber, String employeePassword) {
         this.employeeName = employeeName;
+        this.employeeEmail = employeeEmail;
         this.employeeAddress = employeeAddress;
         this.mobileNumber = mobileNumber;
+        this.employeePassword = employeePassword;
     }
 
     public Employee() {
@@ -48,6 +57,14 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
+    public String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
+    }
+
     public String getEmployeeAddress() {
         return employeeAddress;
     }
@@ -64,13 +81,23 @@ public class Employee {
         this.mobileNumber = mobileNumber;
     }
 
+    public String getEmployeePassword() {
+        return employeePassword;
+    }
+
+    public void setEmployeePassword(String employeePassword) {
+        this.employeePassword = employeePassword;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "employeeId=" + employeeId +
                 ", employeeName='" + employeeName + '\'' +
+                ", employeeEmail='" + employeeEmail + '\'' +
                 ", employeeAddress='" + employeeAddress + '\'' +
                 ", mobileNumber=" + mobileNumber +
+                ", employeePassword='" + employeePassword + '\'' +
                 '}';
     }
 }
