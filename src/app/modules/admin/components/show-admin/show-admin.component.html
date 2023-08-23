@@ -1,1 +1,29 @@
-<p>show-admin works!</p>
+<div class="card card-body bg-light">
+  <div class="table table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let admin of AdminArray">
+          <td>{{ admin.adminName }}</td>
+          <td>{{ admin.adminEmail }}</td>
+          <td>{{ admin.adminType }}</td>
+          <td>
+            <button class="btn btn-color btn-sm" (click)="setUpdate(admin)">
+              Edit</button
+            >&nbsp;
+            <button class="btn btn-danger btn-sm" (click)="setDelete(admin)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

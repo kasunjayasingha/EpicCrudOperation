@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ShowAdminComponent } from './components/show-admin/show-admin.component';
 import { DashboardContentComponent } from './components/dashboard-content/dashboard-content.component';
+import { Globals } from './components/Globals';
 
 @NgModule({
   declarations: [
@@ -28,5 +29,6 @@ import { DashboardContentComponent } from './components/dashboard-content/dashbo
     HttpClientModule,
     ReactiveFormsModule,
   ],
+  providers: [Globals],
 })
 export class AdminModule {}

@@ -1,7 +1,8 @@
-<div class="row">
-  <div class="col-md-5">
-    <h4 class="text-center">Create Employee</h4>
-
+<div class="col-md-12">
+  <h1 class="text-center">Employee Registration</h1>
+</div>
+<div class="center">
+  <div class="col-md-4">
     <div class="card card-body bg-light">
       <div class="form-horizontal">
         <div class="form-group mb-3">
@@ -73,58 +74,13 @@
           <div class="col-sm-offset-2 col-sm-10 text-right">
             <button
               type="submit"
-              (click)="save()"
+              (click)="register()"
               class="btn btn-primary btn-color"
             >
-              {{ saveButtonName }}</button
-            >&nbsp;
-            <button type="reset" (click)="clear()" class="btn btn-secondary">
-              Clear
+              Register
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-7">
-    <h4 class="text-center">List of Employees</h4>
-
-    <div class="card card-body bg-light">
-      <div class="table table-responsive">
-        <table class="table w-auto">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody class="table-group-divider">
-            <tr *ngFor="let employee of EmployeeArray">
-              <td>{{ employee.employeeName }}</td>
-              <td>{{ employee.employeeEmail }}</td>
-              <td>{{ employee.employeeAddress }}</td>
-              <td>{{ employee.mobileNumber }}</td>
-              <td>
-                <button
-                  class="btn btn-color btn-sm"
-                  (click)="setUpdate(employee)"
-                >
-                  Edit</button
-                >&nbsp;
-                <button
-                  class="btn btn-danger btn-sm"
-                  (click)="setDelete(employee)"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

@@ -1,22 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit {
   EmployeeArray: any[] = [];
 
-  employeeName: any;
-  employeeAddress: any;
-  mobileNumber: any;
+  employeeName: String = '';
+  employeeEmail: String = '';
+  employeeAddress: String = '';
+  mobileNumber: String = '';
+  employeePassword: String = '';
 
   currentEmployeeId = '';
 
   constructor(private http: HttpClient) {
     this.getAllEmployee();
+  }
+  ngOnInit(): void {
+    // this.getAllEmployee();
   }
 
   saveButtonName: string = 'Save';
@@ -31,10 +36,13 @@ export class EmployeeComponent {
 
   // Add Employee
   register() {
+    console.log(this.employeeName);
     let employee = {
       employeeName: this.employeeName,
+      employeeEmail: this.employeeEmail,
       employeeAddress: this.employeeAddress,
       mobileNumber: this.mobileNumber,
+      employeePassword: this.employeePassword,
     };
     this.http
       .post('http://localhost:8080/api/v1/employee/create', employee, {
@@ -46,24 +54,29 @@ export class EmployeeComponent {
         this.getAllEmployee();
 
         this.employeeName = '';
+        this.employeeEmail = '';
         this.employeeAddress = '';
         this.mobileNumber = '';
+        this.employeePassword = '';
       });
   }
   // clear the form
   clear() {
     this.employeeName = '';
+    this.employeeEmail = '';
     this.employeeAddress = '';
     this.mobileNumber = '';
+    this.employeePassword = '';
     this.saveButtonName = 'Save';
   }
 
   // Get All Employees
   getAllEmployee() {
+    console.log('get all employee');
     this.http
       .get('http://localhost:8080/api/v1/employee/getAllEmployee')
       .subscribe((response: any) => {
-        console.log(response);
+        console.log('all employees', response);
         this.EmployeeArray = response;
       });
   }
@@ -72,8 +85,10 @@ export class EmployeeComponent {
   setUpdate(data: any) {
     this.saveButtonName = 'Update';
     this.employeeName = data.employeeName;
+    this.employeeEmail = data.employeeEmail;
     this.employeeAddress = data.employeeAddress;
     this.mobileNumber = data.mobileNumber;
+    this.employeePassword = data.employeePassword;
     this.currentEmployeeId = data.employeeId;
   }
 
@@ -81,8 +96,10 @@ export class EmployeeComponent {
     let employee = {
       employeeId: this.currentEmployeeId,
       employeeName: this.employeeName,
+      employeeEmail: this.employeeEmail,
       employeeAddress: this.employeeAddress,
       mobileNumber: this.mobileNumber,
+      employeePassword: this.employeePassword,
     };
     this.http
       .put('http://localhost:8080/api/v1/employee/updateEmployee', employee, {
@@ -94,8 +111,10 @@ export class EmployeeComponent {
         this.getAllEmployee();
 
         this.employeeName = '';
+        this.employeeEmail = '';
         this.employeeAddress = '';
         this.mobileNumber = '';
+        this.employeePassword = '';
         this.saveButtonName = 'Save';
       });
   }
