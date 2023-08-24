@@ -42,6 +42,7 @@ export class RegisterComponent {
       employeeAddress: this.employeeAddress,
       mobileNumber: this.mobileNumber,
       employeePassword: this.employeePassword,
+      adminStatus: 'request',
     };
     this.http
       .post('http://localhost:8080/api/v1/employee/create', employee, {

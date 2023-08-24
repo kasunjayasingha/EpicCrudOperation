@@ -15,10 +15,8 @@ export class DashboardComponent {
     console.log(sessionStorage.getItem('userRole'));
     if (this.role == 'Admin' || this.role == 'SuperAdmin') {
       this.admin = false;
-      sessionStorage.clear();
     } else {
       this.admin = true;
-      sessionStorage.clear();
     }
   }
 }

@@ -66,13 +66,16 @@ export class LoginComponent {
         (admin) => admin.adminEmail == email && admin.adminPassword == password
       )
     ) {
-      if (this.AdminArray.find((admin) => admin.adminType == 'SuperAdmin')) {
-        // this.globals.userRole = 'SuperAdmin';
-        // this.globals.setUserRole('SuperAdmin');
-        // console.log(this.globals.getUserRole());
+      if (
+        this.AdminArray.find(
+          (admin) =>
+            admin.adminType == 'SuperAdmin' &&
+            admin.adminEmail == email &&
+            admin.adminPassword == password
+        )
+      ) {
         sessionStorage.setItem('userRole', 'SuperAdmin');
       } else {
-        // this.globals.userRole = 'Admin';
         sessionStorage.setItem('userRole', 'Admin');
       }
       alert('Admin Login Successfully');
@@ -84,10 +87,21 @@ export class LoginComponent {
           employee.employeePassword == password
       )
     ) {
-      // this.globals.userRole = 'Employee';
-      sessionStorage.setItem('userRole', 'Employee');
-      alert('Employee Login Successfully');
-      this.router.navigate(['admin']);
+      if (
+        this.EmployeeArray.find(
+          (employee) =>
+            (employee.adminStatus == 'request' ||
+              employee.adminStatus == 'pending') &&
+            employee.employeeEmail == email &&
+            employee.employeePassword == password
+        )
+      ) {
+        alert('Your Registration is Processing...');
+      } else {
+        sessionStorage.setItem('userRole', 'Employee');
+        alert('Employee Login Successfully');
+        this.router.navigate(['admin']);
+      }
     } else {
       alert('Invalid Credentials');
     }

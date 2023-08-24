@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
   EmployeeArray: any[] = [];
+  employee: any[] = [];
 
   employeeName: String = '';
   employeeEmail: String = '';
@@ -16,9 +17,13 @@ export class EmployeeComponent implements OnInit {
   employeePassword: String = '';
 
   currentEmployeeId = '';
+  admin: boolean = false;
 
   constructor(private http: HttpClient) {
     this.getAllEmployee();
+    if (sessionStorage.getItem('userRole') == 'Admin') {
+      this.admin = true;
+    }
   }
   ngOnInit(): void {
     // this.getAllEmployee();
@@ -37,13 +42,26 @@ export class EmployeeComponent implements OnInit {
   // Add Employee
   register() {
     console.log(this.employeeName);
-    let employee = {
-      employeeName: this.employeeName,
-      employeeEmail: this.employeeEmail,
-      employeeAddress: this.employeeAddress,
-      mobileNumber: this.mobileNumber,
-      employeePassword: this.employeePassword,
-    };
+    let employee = {};
+    if (sessionStorage.getItem('userRole') == 'Admin') {
+      employee = {
+        employeeName: this.employeeName,
+        employeeEmail: this.employeeEmail,
+        employeeAddress: this.employeeAddress,
+        mobileNumber: this.mobileNumber,
+        employeePassword: this.employeePassword,
+        adminStatus: 'pending',
+      };
+    } else {
+      employee = {
+        employeeName: this.employeeName,
+        employeeEmail: this.employeeEmail,
+        employeeAddress: this.employeeAddress,
+        mobileNumber: this.mobileNumber,
+        employeePassword: this.employeePassword,
+        adminStatus: 'approved',
+      };
+    }
     this.http
       .post('http://localhost:8080/api/v1/employee/create', employee, {
         responseType: 'text',
@@ -72,12 +90,14 @@ export class EmployeeComponent implements OnInit {
 
   // Get All Employees
   getAllEmployee() {
-    console.log('get all employee');
+    console.log('get all approved employee');
     this.http
       .get('http://localhost:8080/api/v1/employee/getAllEmployee')
       .subscribe((response: any) => {
         console.log('all employees', response);
-        this.EmployeeArray = response;
+        this.EmployeeArray = response.filter(
+          (employee: any) => employee.adminStatus === 'approved'
+        );
       });
   }
 
@@ -100,6 +120,7 @@ export class EmployeeComponent implements OnInit {
       employeeAddress: this.employeeAddress,
       mobileNumber: this.mobileNumber,
       employeePassword: this.employeePassword,
+      adminStatus: 'approved',
     };
     this.http
       .put('http://localhost:8080/api/v1/employee/updateEmployee', employee, {

@@ -16,8 +16,11 @@ export class ShowAdminComponent {
 
   currentEmployeeId = '';
   AdminArray: any[] = [];
+  EmployeeArray: any[] = [];
 
   setUpdateClick: boolean = false;
+  emp: any;
+  adminsPrivilege: boolean = false;
 
   // adminPassArray: any[] = [];
 
@@ -27,6 +30,18 @@ export class ShowAdminComponent {
     private router: Router
   ) {
     this.getAllAdmins();
+    this.emp = sessionStorage.getItem('userRole') == 'Admin';
+    console.log(this.emp);
+
+    if (this.emp) {
+      this.getAllEmployeeAdmin();
+    } else {
+      this.getAllEmployeeSuperAdmin();
+    }
+
+    if (sessionStorage.getItem('userRole') == 'Admin') {
+      this.adminsPrivilege = true;
+    }
   }
 
   // Get All Admins
@@ -37,6 +52,29 @@ export class ShowAdminComponent {
       .subscribe((response: any) => {
         console.log('all admins', response);
         this.AdminArray = response;
+      });
+  }
+  // Get All Employees
+  getAllEmployeeAdmin() {
+    console.log('get all requesting employee');
+    this.http
+      .get('http://localhost:8080/api/v1/employee/getAllEmployee')
+      .subscribe((response: any) => {
+        console.log('all employees', response);
+        this.EmployeeArray = response.filter(
+          (employee: any) => employee.adminStatus === 'request'
+        );
+      });
+  }
+  getAllEmployeeSuperAdmin() {
+    console.log('get all pending employee');
+    this.http
+      .get('http://localhost:8080/api/v1/employee/getAllEmployee')
+      .subscribe((response: any) => {
+        console.log('all employees', response);
+        this.EmployeeArray = response.filter(
+          (employee: any) => employee.adminStatus === 'pending'
+        );
       });
   }
 
@@ -62,6 +100,11 @@ export class ShowAdminComponent {
     this.router.navigate(['admin/adminPanel']);
   }
 
+  setUpdateEmployee(data: any) {
+    sessionStorage.setItem('employeeId', data.employeeId);
+    this.router.navigate(['admin/adminPanel']);
+  }
+
   // Delete Employee
   setDelete(data: any) {
     this.http
@@ -77,4 +120,6 @@ export class ShowAdminComponent {
         this.getAllAdmins();
       });
   }
+
+  setDeleteEmployee(data: any) {}
 }
